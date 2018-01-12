@@ -1,0 +1,1 @@
+Project built by following https://netbeans.org/kb/docs/javaee/javaee-entapp-ejb.html to study and analyze a project example made in Java EE 7 w/EJB 3.1.
