@@ -52,14 +52,16 @@ public class ListNews extends HttpServlet {
             
             out.println("<h1>Servlet ListNews at " + request.getContextPath () + "</h1>");
 
+            System.out.println("newsEntityFacade="+newsEntityFacade.toString());
             List news = newsEntityFacade.findAll();
+            System.out.println("NEWS="+news.toString());
             for (Iterator it = news.iterator(); it.hasNext();) {
                 NewsEntity elem = (NewsEntity) it.next();
-                out.println(" <b>"+elem.getTitle()+" </b><br />");
-                out.println(elem.getBody()+"<br /> ");
+                out.println("<b>"+elem.getTitle()+"</b><br/>");
+                out.println(elem.getBody()+"<br/>");
             }
             out.println("<a href='PostMessage'>Add new message</a>");            
-            out.println("<br><br>");
+            out.println("<br/><br/>");
             out.println(sessionManagerBean.getActiveSessionsCount() + " user(s) reading the news.");
             
             out.println("</body>");

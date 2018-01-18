@@ -16,24 +16,18 @@ import javax.persistence.PersistenceContext;
  * @author Finalgalaxy
  */
 @JMSDestinationDefinition(
-        name = "java:app/jms/jms_newsapp",
+        name = "java:app/jms/NewMessage",
         interfaceName = "javax.jms.Queue",
         resourceAdapter = "jmsra",
-        destinationName = "jms_newsapp"
+        destinationName = "jmsNewMessage"
 )
 
 /* MessageDriven directive estabilishes that this class is a Message Driven Bean and specifies the JMS resource used by the bean,
    
 */
 @MessageDriven(activationConfig = {
-    @ActivationConfigProperty(
-            propertyName = "destinationLookup",
-            propertyValue = "java:app/jms/jms_newsapp"
-    ),
-    @ActivationConfigProperty(
-            propertyName = "destinationType",
-            propertyValue = "javax.jms.Queue"
-    )
+    @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "java:app/jms/NewMessage"),
+    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue")
 })
 
 @SuppressWarnings("CallToPrintStackTrace")
@@ -43,12 +37,14 @@ public class NewMessage implements MessageListener {
     
     public NewMessage() {}
     
-    public void save(Object object) {     
+    public void save(Object object) {  
+        System.out.println("Invoked save");
         em.persist(object);
     }
     
     @Override
     public void onMessage(Message message) {
+        System.out.println("Invoked onMessage");
         try{
             if(message instanceof ObjectMessage){
                 save((NewsEntity)(((ObjectMessage)message).getObject()));

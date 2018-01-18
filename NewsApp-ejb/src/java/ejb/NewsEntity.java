@@ -14,7 +14,7 @@ import javax.persistence.Id;
  */
 @Entity             // Let's mark this class as an Entity.
 public class NewsEntity implements Serializable {
-    private static final long serialVersionUID = 1L;    // Java ID for the object
+    private static final long serialVersionUID = 2920382023L;    // Java ID for the object
     
     // Business data: id, title, body (of a news entity).
     @Id @GeneratedValue(strategy = GenerationType.AUTO) private Long id;    // ID auto generated for the object inside the DB
